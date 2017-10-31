@@ -66,7 +66,7 @@ public class InputParser {
 	private UserData calculateUserData(Entry<String, List<LogLine>> userEntry, LocalTime max, LocalTime min) {
 		  UserData userData = new UserData(userEntry.getKey());
 		  userEntry.getValue().stream()
-		  				 .forEach(logLine->userData.push(logLine));
+		  				 .forEach(logLine -> userData.push(logLine));
 		  userData.calculateLeftOvers(max, min);
 		  
 		  return userData;
