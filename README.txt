@@ -19,6 +19,6 @@
 			
 * Error messages: 
 	- If no file name given : 'Err: Please add a file name parameter.'
-	- If file not found : 'Err: Please add a file name parameter.'
+	- If file not found : 'Err: Can not find the file -> <file_name>'
 	- If file is empty : 'Err: This file is empty.'			
 	- If file doesn't have any readble data : 'Err: File doesnt have any suitable data.' 		
