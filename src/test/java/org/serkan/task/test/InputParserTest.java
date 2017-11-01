@@ -31,7 +31,7 @@ public class InputParserTest {
 		   InputParser inputParser = new InputParser(files);
 	   }	
 	   
-	  /* @Test (expected=InputMismatchException.class)
+	   @Test (expected=InputMismatchException.class)
 	   public void test_if_file_is_empty_throw_exception() throws IOException
 	   {
 		   createEmptyFile();
@@ -62,29 +62,7 @@ public class InputParserTest {
 		   assertEquals(4, inputParser.getLinesSize()); 
 		   
 		   removeFile();
-	   }*/
-	   
-	   @Test (expected=IllegalArgumentException.class)
-	   public void test_example_test_file_has_incorrect_data_throws_exception() throws IOException
-	   {
-		   String[] lines = {
-				   "line 0",
-				   "line 1",
-				   "line 2",
-				   "line 3",
-				   ""
-		   };
-		   
-		   writeToFile(lines);
-		   
-		   String[] files = new String[1];
-		   files[0] = TEST_FILE_NAME;
-		   InputParser inputParser = new InputParser(files);
-		   
-		   inputParser.getLogLines(); 
-		   
-		   removeFile();
-	   }   
+	   }
 	   
 	   private void writeToFile(String[] lines) throws IOException {
 		   Files.write(Paths.get(TEST_FILE_NAME), Arrays.asList(lines), Charset.defaultCharset(), StandardOpenOption.CREATE);
