@@ -49,7 +49,9 @@ public class InputParser {
 		LocalTime min = logLines.get(0).getTime();
 		
 		List<UserData> userDataList = logLines.stream()
-											  .collect(Collectors.groupingBy(LogLine::getUserName)).entrySet().stream()
+											  .collect(Collectors.groupingBy(LogLine::getUserName))
+											  .entrySet()
+											  .stream()
 											  .map((user) -> calculateUserData(user, max, min))
 											  .collect(Collectors.toList());
 
@@ -58,15 +60,18 @@ public class InputParser {
 	
 	private List<LogLine> filterLines() {
 		return this.lines.stream()
-				   .filter((line) -> LogLine.validateLine(line))
-				   .map((line) -> new LogLine(line))
+				   .filter(LogLine::validateLine)
+				   .map(LogLine::new)
 				   .collect(Collectors.toList());
 	}
 	
 	private UserData calculateUserData(Entry<String, List<LogLine>> userEntry, LocalTime max, LocalTime min) {
 		  UserData userData = new UserData(userEntry.getKey());
-		  userEntry.getValue().stream()
-		  				 .forEach(logLine -> userData.push(logLine));
+		  
+		  userEntry.getValue()
+		  		   .stream()
+		  		   .forEach(userData::push);
+		  
 		  userData.calculateLeftOvers(max, min);
 		  
 		  return userData;
